@@ -96,17 +96,12 @@ define([
     
     initRowEditCheckboxes: function(el) {
       var free = 0;
-      if($(el).hasClass('free')) {
-        free = 2;
-      } else if($(el).hasClass('half')) {
-        free = 1;
-      }
       $("[data-user-id][data-date='" + $(el).attr('data-date') + "']").each(function() {
         if($(this).hasClass('free')) {
           free = 2;
           return false;
-        } else {
-          free = Math.max(free, 1);
+        } else if($(this).hasClass('half')) {
+          free = 1;
         }
       });
       $(".row-edit [name='free']").val(free);

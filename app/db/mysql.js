@@ -41,11 +41,6 @@ function query() {
       // Don't use the connection here, it has been returned to the pool. 
       callback(err, rows);
     });
-    connection.on('error', function(err) {    
-      res.json({"code" : 100, "status" : "Error in connection database"});
-      callback(err, null);
-      return;
-    });
   });
 };
 exports.query = query;
