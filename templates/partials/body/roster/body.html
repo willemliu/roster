@@ -1,0 +1,20 @@
+<div class="table">
+  <div class="thead">
+    <div class="tr">
+      <div class="td">Date</div>
+      {{#users}}
+      <div class="td">{{username}}</div>
+      {{/users}}
+    </div>
+  </div>
+  <div class="tbody">
+    {{#dates}}
+    <div class="tr">
+      <div class="td edit-row" data-date="{{date}}">{{date}}</div>
+      {{#users}}
+      <div class="td {{#settings}}{{free}} {{#morning}}morning{{/morning}} {{#afternoon}}afternoon{{/afternoon}} {{#evening}}evening{{/evening}} {{#night}}night{{/night}}{{/settings}}" data-date="{{date}}" data-user-id="{{id}}">{{username}}</div>
+      {{/users}}
+    </div>
+    {{/dates}}
+  </div>
+</div>

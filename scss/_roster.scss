@@ -1,0 +1,152 @@
+html.roster {
+  font-family: tahoma;
+  font-size: 14px;
+  height: 100%;
+  
+  body, .table {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .table {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+    color: white;
+  }
+  .thead {
+    display: table-header-group;
+    background: #00cccc;
+    .td {
+      background: #00cccc;
+    }
+  }
+  .tbody {
+    display: table-row-group;
+    background: white;
+  }
+  .tr {
+    display: table-row;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .td {
+    display: table-cell;
+    border: 1px solid white;
+    vertical-align: middle;
+    position: relative;
+    background: green;
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &:nth-child(1) {
+      width: 120px;
+      background: #00cccc;
+    }
+    
+    &.half {
+      background: #aaa;
+    }
+    
+    &.free {
+      background: white;
+      color: #aaa;
+    }
+    
+  }
+  
+  [data-user-id],
+  .edit-row {
+    cursor: pointer;
+  }
+  
+  .cell-edit,
+  .row-edit,
+  .col-edit  {
+    display: none;
+    position: absolute;
+    width: 250px;
+    background: #333;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    
+    h1 {
+      font-size: 1rem;
+    }
+    
+    label {
+      display: block;
+      padding: 5px;
+      cursor: pointer;
+    }
+    
+    [type='checkbox'] {
+      margin-right: 5px;
+    }
+    
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-width: 16px 16px 0 0;
+      border-style: solid;
+      border-color: red transparent transparent red;
+      display: block;
+      width: 0;
+    }
+
+    &.point-left {
+      border-top-left-radius: 0px;
+      &.point-bottom {
+        &:before {
+          top: initial;
+          bottom: 0;
+          border-width: 0 16px 16px 0;
+          border-color: red transparent red transparent;
+        }
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 0px;
+      }
+    }
+    &.point-right {
+      border-top-right-radius: 0px;
+      &:before {
+        top: 0;
+        left: initial;
+        right: 0;
+        border-width: 0 16px 16px 0;
+        border-color: red red transparent transparent
+      }
+      &.point-bottom {
+        &:before {
+          top: initial;
+          bottom: 0;
+          border-width: 16px 16px 0 0;
+          border-color: transparent red red transparent;
+        }
+
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 0px;
+      }
+    }
+    
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px 10px 0 0;
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      &:before {
+        content: 'x';
+      }
+    }
+  }
+}
