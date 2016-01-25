@@ -18,11 +18,11 @@ module.exports = function(app, fs, mustache, mysql) {
     });    
   });
   
-  app.get('/:slug', function(req, res){ // get the url and slug info
+  app.get('/roster/:slug', function(req, res){ // get the url and slug info
     var slug =[req.params.slug][0]; // grab the page slug
     
     getUsers([], function() {
-      renderHtml(res, slug, data);
+      renderHtml(res, 'roster', data);
     });
     
   });
@@ -36,7 +36,12 @@ module.exports = function(app, fs, mustache, mysql) {
     for(var i = 0; i < 30; ++i) {
       var day = theDate.getDay();
       if(day != 0 && day != 6) {
-        data.dates.push({date:theDate.toDateString(), dateString:theDate.toDateString().substr(0, 10), users: [], usersDates: [], today: theDate.getTime()==today.getTime()});
+        data.dates.push({
+          date:theDate.toDateString(), 
+          dateString:theDate.toDateString().substr(0, 10), 
+          users: [], 
+          usersDates: [], 
+          today: (theDate.getTime()==today.getTime())?'today':''});
       }
       theDate.setDate(theDate.getDate() + 1);
     }
@@ -62,7 +67,7 @@ module.exports = function(app, fs, mustache, mysql) {
   }
   
   function getUsersDate(dataArray, cb) {
-    var strQuery = "SELECT *, IF((free > 0), IF((free > 1), 'free', 'half'), '') AS free FROM roster.users_dates WHERE dt >= DATE_SUB(NOW(), INTERVAL 1 day) AND dt <= DATE_ADD(NOW(), INTERVAL 30 day) ORDER BY dt ASC";
+    var strQuery = "SELECT *, IF((free > 0), IF((free > 1), 'free', 'half'), '') AS free, IF(out_of_office>0, 'out-of-office', '') AS out_of_office, IF(support_duty>0, 'support-duty', '') AS support_duty FROM users_dates WHERE dt >= DATE_SUB(NOW(), INTERVAL 1 day) AND dt <= DATE_ADD(NOW(), INTERVAL 30 day) ORDER BY dt ASC";
     mysql.query( strQuery, dataArray, function(err, res) {
       if(err)	{
         throw err;

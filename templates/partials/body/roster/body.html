@@ -9,10 +9,10 @@
   </div>
   <div class="tbody">
     {{#dates}}
-    <div class="tr-{{today}}">
+    <div class="tr {{today}}">
       <div class="td edit-row" data-date="{{date}}">{{dateString}}</div>
       {{#users}}
-      <div class="td {{#settings}}{{free}} {{#morning}}morning{{/morning}} {{#afternoon}}afternoon{{/afternoon}} {{#evening}}evening{{/evening}} {{#night}}night{{/night}}{{/settings}}" data-date="{{date}}" data-user-id="{{id}}">{{username}}</div>
+      <div class="td {{#settings}}{{free}} {{out_of_office}} {{support_duty}}{{/settings}}" data-date="{{date}}" data-user-id="{{id}}"><span class="out-of-office"></span>{{username}}<span class="support-duty"></span></div>
       {{/users}}
     </div>
     {{/dates}}

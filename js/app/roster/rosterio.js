@@ -35,10 +35,33 @@ define([
     },
     
     editCell: function(json) {
+      var result = this.processSocketIOmsg(json);
+      var cell = $("[data-date='" + result.date + "'][data-user-id='" + result.userId + "']");
+      this.removeAllSpecialClasses(cell);
+      cell.addClass(result.cssClasses);
+    },
+    
+    editRow: function(json) {
+      var result = this.processSocketIOmsg(json);
+      var cell = $("[data-date='" + result.date + "'][data-user-id]");
+      cell.removeClass("free half");
+      cell.addClass(result.cssClasses);
+    },
+    
+    removeAllSpecialClasses: function(el) {
+      $(el).removeClass("free half out-of-office support-duty");
+    },
+    
+    /**
+     * Convenience function processes input and returns directly usable values.
+     *
+     * Output
+     * { date: date, userId: userId, cssClasses: cssClasses, ...etc }
+     */
+    processSocketIOmsg: function(json) {
       var date;
       var userId;
-      var free = '';
-      var freeClass = "";
+      var cssClasses = [];
 
       for(var idx in json) {
         if(json[idx].name == 'data-date') {
@@ -46,39 +69,42 @@ define([
         } else if(json[idx].name == 'data-user-id') {
           userId = json[idx].value;
         } else if(json[idx].name == 'free') {
-          free = json[idx].value;
+          cssClasses.push(this.isFree(json[idx].value));
+        } else if(json[idx].name == 'out-of-office' && json[idx].value > 0) {
+          console.log(json[idx].value);
+          cssClasses.push(json[idx].name);
+        } else if(json[idx].name == 'support-duty' && json[idx].value > 0) {
+          console.log(json[idx].value);
+          cssClasses.push(json[idx].name);
         }
       }
-      if(free == 1) {
-        freeClass = "half";
-      } else if(free > 1) {
-        freeClass = "free";
-      }
-      var cell = $("[data-date='" + date + "'][data-user-id='" + userId + "']");
-      cell.removeClass("free half");
-      cell.addClass(freeClass);
+      
+      return {
+        date: date,
+        userId: userId,
+        cssClasses: cssClasses.join(' ')
+      };
     },
     
-    editRow: function(json) {
-      var date;
-      var free = '';
-      var freeClass = "";
-
-      for(var idx in json) {
-        if(json[idx].name == 'data-date') {
-          date = json[idx].value;
-        } else if(json[idx].name == 'free') {
-          free = json[idx].value;
-        }
-      }
+    /**
+     * Can return free or half or an empty string.
+     * Input
+     * 0: at work
+     * 1: half a day off
+     * 2: full day off
+     *
+     * Output
+     * - 'free': entire day off
+     * - 'half': half a day off
+     * - '': at working
+     */
+    isFree: function(free) {
       if(free == 1) {
-        freeClass = "half";
+        return "half";
       } else if(free > 1) {
-        freeClass = "free";
+        return "free";
       }
-      var cell = $("[data-date='" + date + "'][data-user-id]");
-      cell.removeClass("free half");
-      cell.addClass(freeClass);
+      return '';
     },
     
     getInstance: function() {
