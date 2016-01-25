@@ -33,6 +33,21 @@ html.roster {
       opacity: 0.8;
     }
   }
+  .tr-false {
+    display: table-row;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .tr-true {
+    display: table-row;
+    &:hover {
+      opacity: 0.8;
+    }
+    .td {
+      background: darkblue;
+    }
+  }
   .td {
     display: table-cell;
     border: 1px solid white;
