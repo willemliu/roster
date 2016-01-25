@@ -34,7 +34,7 @@ module.exports = function(app, fs, mustache, mysql) {
       theDate.setDate(theDate.getDate() + 1);
       var day = theDate.getDay();
       if(day != 0 && day != 6) {
-        data.dates.push({date:theDate.toDateString(), users: [], usersDates: []});
+        data.dates.push({date:theDate.toDateString(), dateString:theDate.toDateString().substr(0, 10), users: [], usersDates: []});
       }
     }
   }
