@@ -7,10 +7,10 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
   connectionLimit: 100, // Default 10
   host : "127.0.0.1",
-  database: "willim_roster",
-  user : "willim_roster",
+  database: "roster",
+  user : "roster",
   multipleStatements: true,
-  password: "willim_roster"
+  password: "roster"
 });
 console.log('MySQL pool created');
 
