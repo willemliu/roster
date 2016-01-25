@@ -57,6 +57,32 @@ html.roster {
       color: #aaa;
     }
     
+    &.out-of-office {
+      .out-of-office {
+        background-image: url('/img/out-of-office.png');
+        width: 12px;
+        background-size: contain;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 12px;
+        background-repeat: no-repeat;
+      }
+    }
+    
+    &.support-duty {
+      .support-duty {
+        background-image: url('/img/support-duty.png');
+        width: 12px;
+        background-size: contain;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 12px;
+        background-repeat: no-repeat;
+        margin-right: 2px;
+      }
+    }
   }
   
   [data-user-id],

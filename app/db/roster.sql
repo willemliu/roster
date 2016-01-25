@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `willim_roster` /*!40100 DEFAULT CHARACTER SET ut
 USE `willim_roster`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: willimdb-ubuntu2.westeurope.cloudapp.azure.com    Database: willim_roster
+-- Host: localhost    Database: willim_roster
 -- ------------------------------------------------------
--- Server version	5.6.27-0ubuntu0.14.04.1
+-- Server version	5.7.9-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -82,7 +82,7 @@ CREATE TABLE `users` (
   `username` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT  IGNORE INTO `users` VALUES (11,'BG'),(2,'BK'),(13,'GG'),(3,'GV'),(5,'JH'),(7,'JK'),(12,'JS'),(8,'KL'),(9,'MK'),(6,'RA'),(10,'RB'),(4,'SA'),(1,'WL');
+INSERT  IGNORE INTO `users` VALUES (11,'BG'),(2,'BK'),(13,'GG'),(3,'GV'),(5,'JH'),(7,'JK'),(12,'JS'),(8,'KL'),(27,'MH'),(9,'MK'),(6,'RA'),(10,'RB'),(4,'SA'),(1,'WL');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,11 +106,13 @@ CREATE TABLE `users_dates` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
   `free` tinyint(1) DEFAULT '1',
+  `out_of_office` tinyint(1) DEFAULT '0',
+  `support_duty` tinyint(1) DEFAULT '0',
   `dt` date NOT NULL,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_users_dates_unique` (`user_id`,`dt`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-24 19:02:26
+-- Dump completed on 2016-01-25 20:28:34

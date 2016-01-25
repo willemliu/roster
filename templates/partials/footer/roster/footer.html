@@ -1,11 +1,16 @@
 <div class="edit-box cell-edit point-left">
-  <h1>Free</h1>
   <form action="" onSubmit="return false;">
+    <h1>Free</h1>
     <select name="free">
       <option value="0">--At work--</option>
       <option value="1">Half day</option>
       <option value="2">Free</option>
     </select>
+    
+    <h1>Special</h1>
+    <label><input type="checkbox" name="out-of-office" value="1"/>Out-of-office</label>
+    <label><input type="checkbox" name="support-duty" value="1"/>Support duty</label>
+    
     <input type="hidden" name="data-date" value=""/>
     <input type="hidden" name="data-user-id" value=""/>
   </form>

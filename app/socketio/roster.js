@@ -14,6 +14,8 @@ module.exports = {
     var date;
     var userId;
     var free = 0;
+    var outOfOffice = 0;
+    var supportDuty = 0;
 
     for(var idx in json) {
       if(json[idx].name == 'data-date') {
@@ -22,15 +24,23 @@ module.exports = {
         userId = parseInt(json[idx].value);
       } else if(json[idx].name == 'free') {
         free = json[idx].value;
+      } else if(json[idx].name == 'out-of-office') {
+        outOfOffice = json[idx].value;
+      } else if(json[idx].name == 'support-duty') {
+        supportDuty = json[idx].value;
       }
     }
     
     var dataArray = [];
     dataArray.push(userId);
     dataArray.push(free);
+    dataArray.push(outOfOffice);
+    dataArray.push(supportDuty);
     dataArray.push(new Date(date));
     dataArray.push(free);
-    var strQuery = "INSERT IGNORE INTO users_dates (user_id, free, dt) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE free=?";
+    dataArray.push(outOfOffice);
+    dataArray.push(supportDuty);
+    var strQuery = "INSERT IGNORE INTO users_dates (user_id, free, out_of_office, support_duty, dt) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE free=?, out_of_office=?, support_duty=?";
     module.exports.mysql.query( strQuery, dataArray, function(err, rows) {
       if(err)	{
         throw err;
