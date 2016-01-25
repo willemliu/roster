@@ -18,9 +18,9 @@ html.roster {
   }
   .thead {
     display: table-header-group;
-    background: #00cccc;
+    background: #000;
     .td {
-      background: #00cccc;
+      background: #000;
     }
   }
   .tbody {
@@ -45,7 +45,7 @@ html.roster {
 
     &:nth-child(1) {
       width: 120px;
-      background: #00cccc;
+      background: #000;
     }
     
     &.half {
