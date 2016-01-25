@@ -9,7 +9,7 @@
   </div>
   <div class="tbody">
     {{#dates}}
-    <div class="tr">
+    <div class="tr {{today}}">
       <div class="td edit-row" data-date="{{date}}">{{dateString}}</div>
       {{#users}}
       <div class="td {{#settings}}{{free}} {{out_of_office}} {{support_duty}}{{/settings}}" data-date="{{date}}" data-user-id="{{id}}"><span class="out-of-office"></span>{{username}}<span class="support-duty"></span></div>

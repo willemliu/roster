@@ -32,6 +32,10 @@ html.roster {
     &:hover {
       opacity: 0.8;
     }
+    
+    &.today .td {
+      background: darkblue;
+    }
   }
   .td {
     display: table-cell;
