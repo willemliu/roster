@@ -10,7 +10,7 @@
   <div class="tbody">
     {{#dates}}
     <div class="tr">
-      <div class="td edit-row" data-date="{{date}}">{{date}}</div>
+      <div class="td edit-row" data-date="{{date}}">{{dateString}}</div>
       {{#users}}
       <div class="td {{#settings}}{{free}} {{#morning}}morning{{/morning}} {{#afternoon}}afternoon{{/afternoon}} {{#evening}}evening{{/evening}} {{#night}}night{{/night}}{{/settings}}" data-date="{{date}}" data-user-id="{{id}}">{{username}}</div>
       {{/users}}
