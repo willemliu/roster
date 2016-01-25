@@ -29,7 +29,6 @@ function query() {
   var callback = arguments[arguments.length-1];
   pool.getConnection(function(err, connection) {
     if (err) {
-      connection.release();
       res.json({"code" : 100, "status" : "Error in connection database"});
       callback(err, null);
       return;
