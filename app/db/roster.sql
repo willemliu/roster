@@ -1,5 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `willim_roster` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `willim_roster`;
+USE `roster`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: willim_roster
