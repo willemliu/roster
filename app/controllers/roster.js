@@ -10,6 +10,9 @@ module.exports = function(app, fs, mustache, mysql) {
     dates: []
   }; // wrap the data in a global object... (mustache starts from an object then parses)
   
+  /**
+   * Reset the data object.
+   */
   function resetData() {
     data = {
       title: 'Roster',
@@ -18,6 +21,9 @@ module.exports = function(app, fs, mustache, mysql) {
     };
   }
   
+  /**
+   * Controllers for / and /roster/. They both show the index.
+   */
   app.get('/', getIndex);
   app.get('/roster', getIndex);
   function getIndex(req, res){ // INDEX
@@ -33,16 +39,22 @@ module.exports = function(app, fs, mustache, mysql) {
     })
   };
   
-  app.get('/roster/:slug', function(req, res){ // get the url and slug info
+  /**
+   * Controller for /footer/{date}
+   */
+  app.get('/roster/:date', function(req, res){ // get the url and date info
     resetData();
-    var slug =[req.params.slug][0]; // grab the page slug
-    var startDate = new Date(slug);
+    var date =[req.params.date][0]; // grab the page slug
+    var startDate = new Date(date);
     initDates(startDate);
     getUsers(function() {
       renderHtml(res, data);
     });    
   });
   
+  /**
+   * Fill the data object with all the dates we want to show.
+   */
   function initDates(startDate) {
     var today = new Date();
     for(var i = 0; i < 30; ++i) {
@@ -59,12 +71,18 @@ module.exports = function(app, fs, mustache, mysql) {
     }
   }
   
+  /**
+   * Add all users to all dates in the data object.
+   */
   function addUsersToDates(users) {
     for(var idx in data.dates) {
       data.dates[idx].users = JSON.parse(JSON.stringify(users));
     }
   }
   
+  /**
+   * Get all users from the DB and store it in the data object.
+   */
   function getUsers(cb) {
     var strQuery = "SELECT * FROM users ORDER BY username ASC";
     mysql.query( strQuery, function(err, res) {
@@ -78,6 +96,9 @@ module.exports = function(app, fs, mustache, mysql) {
     });
   }
   
+  /**
+   * For every date set in the data object we retrieve all the user settings for that day.
+   */
   function getUsersDate(cb) {
     var strQuery = "SELECT *, IF((free > 0), IF((free > 1), 'free', 'half'), '') AS free, IF(out_of_office>0, 'out-of-office', '') AS out_of_office, IF(support_duty>0, 'support-duty', '') AS support_duty FROM users_dates WHERE dt>=? AND dt<=? ORDER BY dt ASC";
     var startDate = new Date(data.dates[0].date);
