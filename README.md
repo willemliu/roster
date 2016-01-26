@@ -29,6 +29,12 @@ You can find the minimum DB schema in the __app/db__ folder.
 This schema creates the necessary tables and has also prefilled the user DB with some dummy data.
 You can replace this data as you wish.
 
+## Install dependencies
+In order to install dependencies for __Roster__ you can run the following command from the command-line.
+```
+npm install
+```
+
 ## Compile
 In order to run __Roster__ you may want to compile it first. 
 This is easily done by running `gulp` in the root of the project folder on the command-line.
