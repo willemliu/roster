@@ -6,5 +6,6 @@ lib/socket.io.js
 app/chat/chatio.js
 app/roster/rosterio.js
 app/roster/rosteredit.js
+app/roster/rosternav.js
 app/app.js
 lib/../config.js
