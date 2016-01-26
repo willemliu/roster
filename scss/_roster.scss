@@ -34,7 +34,8 @@ html.roster {
     }
     
     &.today .td {
-      background: darkblue;
+      border-top: solid darkblue;
+      border-bottom: solid darkblue;
     }
   }
   .td {
