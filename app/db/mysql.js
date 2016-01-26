@@ -3,14 +3,15 @@
  */
 console.log("Initialize MySQL");
 var mysql = require('mysql');
+var credentials = require('./credentials');
 
 var pool = mysql.createPool({
   connectionLimit: 100, // Default 10
-  host : "127.0.0.1",
-  database: "roster",
-  user : "roster",
+  host : credentials.host,
+  database: credentials.database,
+  user : credentials.user,
   multipleStatements: true,
-  password: "roster"
+  password: credentials.password
 });
 console.log('MySQL pool created');
 
