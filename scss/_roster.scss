@@ -1,6 +1,6 @@
 html.roster {
   font-family: tahoma;
-  font-size: 18px;
+  font-size: $default-font-size;
   height: 100%;
   
   body, .table {
@@ -14,17 +14,17 @@ html.roster {
     table-layout: fixed;
     width: 100%;
     text-align: center;
-    color: white;
+    color: $table-font-color;
   }
   .thead {
     display: table-header-group;
-    background: #000;
+    background: $thead-cell-bg-color;
     .td {
-      background: #000;
+      background: $thead-cell-bg-color;
       
       .previousPeriod {
         display: inline-block;
-        width: 25px;
+        width: $date-nav-width;
         height: 0;
         border-style: solid;
         border-width: 5px 10px 5px 0;
@@ -33,7 +33,7 @@ html.roster {
       }
       .nextPeriod {
         display: inline-block;
-        width: 25px;
+        width: $date-nav-width;
         height: 0;
         border-style: solid;
         border-width: 5px 0 5px 10px;
@@ -53,8 +53,8 @@ html.roster {
     }
     
     &.today .td {
-      border-top: solid darkblue;
-      border-bottom: solid darkblue;
+      border-top: solid $today-color;
+      border-bottom: solid $today-color;
     }
   }
   .td {
@@ -62,34 +62,34 @@ html.roster {
     border: 1px solid white;
     vertical-align: middle;
     position: relative;
-    background: green;
+    background: $default-cell-bg-color;
     &:hover {
       opacity: 0.5;
     }
 
     &:nth-child(1) {
       width: 120px;
-      background: #000;
+      background: $thead-cell-bg-color;
     }
     
     &.half {
-      background: orange;
+      background: $half-day-off-bg-color;
     }
     
     &.free {
-      background: white;
-      color: #aaa;
+      background: $free-bg-color;
+      color: $free-font-color;
     }
     
     &.out-of-office {
       .out-of-office {
         background-image: url('/img/out-of-office.png');
-        width: 12px;
+        width: $badge-icon-width;
         background-size: contain;
         position: absolute;
         right: 0;
         top: 0;
-        height: 12px;
+        height: $badge-icon-height;
         background-repeat: no-repeat;
       }
     }
@@ -97,12 +97,12 @@ html.roster {
     &.support-duty {
       .support-duty {
         background-image: url('/img/support-duty.png');
-        width: 12px;
+        width: $badge-icon-width;
         background-size: contain;
         position: absolute;
         right: 0;
         bottom: 0;
-        height: 12px;
+        height: $badge-icon-height;
         background-repeat: no-repeat;
         margin-right: 2px;
       }
@@ -120,10 +120,10 @@ html.roster {
     display: none;
     position: absolute;
     width: 250px;
-    background: #333;
+    background: $edit-bg-color;
     border-radius: 20px;
     padding: 20px;
-    color: white;
+    color: $edit-font-color;
     
     h1 {
       font-size: 1rem;
