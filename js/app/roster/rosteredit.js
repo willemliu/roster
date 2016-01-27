@@ -52,9 +52,14 @@ define([
     showColEdit: function(e) {
       $(".edit-box").hide();
       this.showEditBox(e, '.column-edit');
+      $(".column-edit [name='data-user-id']").val($(e.currentTarget).attr('data-user-id'));
+      var today = new Date();
+      var nextMonth = new Date();
+      nextMonth.setMonth(today.getMonth()+1);
       $('.column-edit input[type="date"]').each(function() {
-        $(this).get(0).valueAsDate = new Date();
+        $(this).get(0).valueAsDate = today;
       });
+      $('.column-edit input[name="end-date"]').get(0).valueAsDate = nextMonth;
       
       $('.column-edit').removeClass('rtl');
       $('.column-edit.point-right').each(function() {

@@ -4,6 +4,7 @@ lib/../config.js
 lib/jquery-2.2.0.js
 lib/socket.io.js
 app/chat/chatio.js
+app/roster/recurdate.js
 app/roster/rosterio.js
 app/roster/rosteredit.js
 app/roster/rosternav.js

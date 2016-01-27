@@ -3,8 +3,9 @@
  */
 define([
   'jquery',
-  'socketio'
-], function($, io) {
+  'socketio',
+  'app/roster/recurdate'
+], function($, io, RecurDate) {
   var instance = null;
   
   function RosterIO(){
@@ -32,7 +33,11 @@ define([
 
       $(document).on("click", ".column-edit input[type='submit']", function(){
         var json = JSON.stringify($(".column-edit form").serializeArray());
-        socket.emit('edit column', JSON.parse(json));
+        var dates = RecurDate.getInstance().processRules(JSON.parse(json));
+        for(var idx in dates) {
+          socket.emit('edit cell', dates[idx]);
+        }
+        
         return false;
       });
 
@@ -41,15 +46,16 @@ define([
     },
     
     editCell: function(json) {
+      console.log(json);
       var result = this.processSocketIOmsg(json);
-      var cell = $("[data-date='" + result.date + "'][data-user-id='" + result.userId + "']");
+      var cell = $("[data-date='" + (new Date(result.date)).toDateString() + "'][data-user-id='" + result.userId + "']");
       this.removeAllSpecialClasses(cell);
       cell.addClass(result.cssClasses);
     },
     
     editRow: function(json) {
       var result = this.processSocketIOmsg(json);
-      var cell = $("[data-date='" + result.date + "'][data-user-id]");
+      var cell = $("[data-date='" + (new Date(result.date)).toDateString() + "'][data-user-id]");
       cell.removeClass("free half");
       cell.addClass(result.cssClasses);
     },
