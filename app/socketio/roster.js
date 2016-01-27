@@ -78,5 +78,10 @@ module.exports = {
     });
     
     module.exports.io.emit('edit row', json);
-  }  
+  },
+  
+  editColumn: function(json) {
+    console.log("Do some magic with the recurring rules...");
+    console.log("Persist all the data", json);
+  }
 }

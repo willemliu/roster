@@ -37,50 +37,79 @@ define([
     },
     
     addListeners: function() {
-      $(document).on("click", "[data-user-id]", $.proxy(this.showCellEdit, this));
+      $(document).on("click", ".tbody [data-user-id]", $.proxy(this.showCellEdit, this));
+      $(document).on("click", ".thead [data-user-id]", $.proxy(this.showColEdit, this));
       $(document).on("click", ".edit-row", $.proxy(this.showRowEdit, this));
       $(document).on("click", ".edit-box .close", function() {
         $(".edit-box").hide();
       });
+      // Escape key to close edit boxes.
+      $(document).keyup(function(e) {
+        if (e.keyCode == 27) $(".edit-box").hide();   // esc
+      });
     },
     
+    showColEdit: function(e) {
+      $(".edit-box").hide();
+      this.showEditBox(e, '.column-edit');
+      $('.column-edit input[type="date"]').each(function() {
+        $(this).get(0).valueAsDate = new Date();
+      });
+      
+      $('.column-edit').removeClass('rtl');
+      $('.column-edit.point-right').each(function() {
+        $(this).addClass('rtl');
+      });
+    },
     showRowEdit: function(e) {
       $(".edit-box").hide();
       this.showEditBox(e, '.row-edit');
-      var el = e.currentTarget;      
+      var el = e.currentTarget;
       this.initRowEditCheckboxes(el);
     },
     showCellEdit: function(e) {
       $(".edit-box").hide();
       this.showEditBox(e, '.cell-edit');
-      var el = e.currentTarget;      
+      var el = e.currentTarget;
       this.initCellEditCheckboxes(el);
     },
     
+    /**
+     * Calculate where to open the edit box.
+     * Edit box must fit inside viewport and point to the cell which activated it.
+     */
     showEditBox: function (e, selector) {
       var xOffset = 0;
       var yOffset = 0;
       var jEditBox = $(selector);
+      var jCell = $(e.currentTarget);
+      var posX = jCell.offset().left + jCell.outerWidth();
+      var posY = jCell.offset().top + jCell.outerHeight();
+      
       // The popup must stay within viewport
-      if((e.pageX + jEditBox.outerWidth()) > $(window).width()) {
-        xOffset = jEditBox.outerWidth();
+      if((posX + jEditBox.outerWidth()) > $(window).width()) {
+        xOffset = jEditBox.outerWidth() + jCell.outerWidth();
         jEditBox.removeClass("point-left");
         jEditBox.addClass("point-right");
       } else {
         jEditBox.addClass("point-left");
         jEditBox.removeClass("point-right");
       }
-      if((e.pageY + jEditBox.outerHeight()) > $(window).height()) {
-        yOffset = jEditBox.outerHeight();
+      if((posY + jEditBox.outerHeight()) > $(window).height()) {
+        yOffset = jEditBox.outerHeight() + jCell.outerHeight();
         jEditBox.addClass("point-bottom");
       } else {
         jEditBox.removeClass("point-bottom");
       }
       
-      jEditBox.css({top: e.pageY - yOffset, left: e.pageX - xOffset});
+      jEditBox.css({top: posY - yOffset, left: posX - xOffset});
       jEditBox.show();
     },
     
+    /**
+     * Use the data from the cell to fill out the form in the edit box.
+     * Makes sure that it reflects the current state of the cell.
+     */
     initCellEditCheckboxes: function(el) {
       var free = 0;
       if($(el).hasClass('free')) {
@@ -98,6 +127,10 @@ define([
       $(".cell-edit [name='data-user-id']").val($(el).attr('data-user-id'));
     },
     
+    /**
+     * Use the data from the cells in the row to fill out the form in the edit box.
+     * Makes sure that it reflects the current state of the cell.
+     */
     initRowEditCheckboxes: function(el) {
       var free = 0;
       $("[data-user-id][data-date='" + $(el).attr('data-date') + "']").each(function() {

@@ -31,4 +31,39 @@
   <div class="close"></div>
 </div>
 
-<div class="edit-box column-edit"></div>
+<div class="edit-box column-edit">
+  <form action="" onSubmit="return false;">
+    <h1>Free</h1>
+    <select name="free">
+      <option value="0">--At work--</option>
+      <option value="1">Half day</option>
+      <option value="2">Free</option>
+    </select>
+    
+    <h1>Special</h1>
+    <label><input type="checkbox" name="out-of-office" value="1"/>Out-of-office</label>
+    <label><input type="checkbox" name="support-duty" value="1"/>Support duty</label>
+    
+    <h1>Period (be careful!)</h1>
+    <label>Start date</label><input type="date" name="start-date"/>
+    <label>End date</label><input type="date" name="end-date"/>
+    <label><input type="checkbox" name="recur-monday" value="1"/>Every monday</label>
+    <label><input type="checkbox" name="recur-tuesday" value="1"/>Every tuesday</label>
+    <label><input type="checkbox" name="recur-wednesday" value="1"/>Every wednesday</label>
+    <label><input type="checkbox" name="recur-thursday" value="1"/>Every thursday</label>
+    <label><input type="checkbox" name="recur-friday" value="1"/>Every friday</label>
+    <label><input type="checkbox" name="recur-saturday" value="1"/>Every saturday</label>
+    <label><input type="checkbox" name="recur-sunday" value="1"/>Every sunday</label>
+    <label>Above options recur</label>
+    <select name="recur-week">
+      <option value="1">Every week</option>
+      <option value="2">Every two weeks</option>
+      <option value="3">Every three weeks</option>
+      <option value="4">Every four weeks</option>
+    </select>
+    
+    <input type="hidden" name="data-user-id" value=""/>
+    <input type="submit" name="submit" value="Submit"/>
+  </form>
+  <div class="close"></div>
+</div>

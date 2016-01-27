@@ -30,6 +30,12 @@ define([
         return false;
       });
 
+      $(document).on("click", ".column-edit input[type='submit']", function(){
+        var json = JSON.stringify($(".column-edit form").serializeArray());
+        socket.emit('edit column', JSON.parse(json));
+        return false;
+      });
+
       socket.on('edit cell', $.proxy(this.editCell, this));
       socket.on('edit row', $.proxy(this.editRow, this));
     },

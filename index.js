@@ -14,6 +14,7 @@ io.on('connection', function(socket) {
   console.log('User connected to SocketIO');
   socket.on('edit cell', roster.editCell);
   socket.on('edit row', roster.editRow);
+  socket.on('edit column', roster.editColumn);
   socket.on('chat message', chat.chat);
 
   socket.on('disconnect', function() {

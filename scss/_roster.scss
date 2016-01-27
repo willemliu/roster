@@ -107,6 +107,10 @@ html.roster {
         margin-right: 2px;
       }
     }
+    
+    &[data-date*=Fri] {
+      border-bottom: 1px solid orange;
+    }
   }
   
   [data-user-id],
@@ -116,7 +120,7 @@ html.roster {
   
   .cell-edit,
   .row-edit,
-  .col-edit  {
+  .column-edit {
     display: none;
     position: absolute;
     width: 250px;
@@ -197,6 +201,17 @@ html.roster {
       &:before {
         content: 'x';
       }
+    }
+  }
+  .column-edit {
+    overflow: auto;
+    height: 70vh;
+    &.rtl {
+      direction: rtl;
+    }
+    > :first-child {
+      direction: ltr;
+      overflow: none;
     }
   }
 }
