@@ -44,23 +44,15 @@
     <label><input type="checkbox" name="out-of-office" value="1"/>Out-of-office</label>
     <label><input type="checkbox" name="support-duty" value="1"/>Support duty</label>
     
-    <h1>Period (be careful!)</h1>
+    <h1>Recurrence (be careful!)</h1>
     <label>Start date</label><input type="date" name="start-date"/>
     <label>End date</label><input type="date" name="end-date"/>
-    <label><input type="checkbox" name="recur-day[]" value="0"/>Every monday</label>
-    <label><input type="checkbox" name="recur-day[]" value="1"/>Every tuesday</label>
-    <label><input type="checkbox" name="recur-day[]" value="2"/>Every wednesday</label>
-    <label><input type="checkbox" name="recur-day[]" value="3"/>Every thursday</label>
-    <label><input type="checkbox" name="recur-day[]" value="4"/>Every friday</label>
-    <label><input type="checkbox" name="recur-day[]" value="5"/>Every saturday</label>
-    <label><input type="checkbox" name="recur-day[]" value="6"/>Every sunday</label>
-    <label>Above options recur</label>
-    <select name="recur-week">
-      <option value="1">Every week</option>
-      <option value="2">Every two weeks</option>
-      <option value="3">Every three weeks</option>
-      <option value="4">Every four weeks</option>
-    </select>
+    <label>Every <input type="number" name="recur-week" value="1"/>week(s)</label>
+    <label><input type="checkbox" name="recur-day[]" value="1"/>on Monday</label>
+    <label><input type="checkbox" name="recur-day[]" value="2"/>on Tuesday</label>
+    <label><input type="checkbox" name="recur-day[]" value="3"/>on Wednesday</label>
+    <label><input type="checkbox" name="recur-day[]" value="4"/>on Thursday</label>
+    <label><input type="checkbox" name="recur-day[]" value="5"/>on Friday</label>
     
     <input type="hidden" name="data-user-id" value=""/>
     <input type="submit" name="submit" value="Submit"/>

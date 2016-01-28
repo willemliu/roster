@@ -32,6 +32,10 @@ define([
       });
 
       $(document).on("click", ".column-edit input[type='submit']", function(){
+        if(!confirm("This will overwrite any existing settings on the matching days")) {
+          return;
+        }
+        
         var json = JSON.stringify($(".column-edit form").serializeArray());
         var dates = RecurDate.getInstance().processRules(JSON.parse(json));
         for(var idx in dates) {
@@ -46,7 +50,6 @@ define([
     },
     
     editCell: function(json) {
-      console.log(json);
       var result = this.processSocketIOmsg(json);
       var cell = $("[data-date='" + (new Date(result.date)).toDateString() + "'][data-user-id='" + result.userId + "']");
       this.removeAllSpecialClasses(cell);

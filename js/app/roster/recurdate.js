@@ -86,11 +86,18 @@ define([
     processDates: function(startDate, endDate, days, weekInterval) {
       var result = [];
       var dt = new Date(startDate);
+      var weekOffset = 0;
+      var firstRun = true;
       while(dt.getTime() < endDate.getTime()) {
-        if($.inArray(dt.getDay(), days) === 0) {
+        if(!firstRun && dt.getDay() === 0) {
+          weekOffset++;
+        }
+        // Check if correct week interval and is the selected day.
+        if((weekOffset%weekInterval) === 0 && $.inArray(dt.getDay(), days) === 0) {
           result.push(new Date(dt));
         }
         dt.setDate(dt.getDate()+1); // Increment 1 day
+        firstRun = false;
       }
       return result;
     },

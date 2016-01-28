@@ -143,6 +143,10 @@ html.roster {
       margin-right: 5px;
     }
     
+    [name='recur-week'] {
+      width: 40px;
+    }
+    
     &:before {
       content: "";
       position: absolute;
