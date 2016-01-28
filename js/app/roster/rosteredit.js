@@ -27,7 +27,7 @@ define([
           now.getFullYear(),
           now.getMonth(),
           now.getDate() + 1, // the next day, ...
-          0, 0, 0 // ...at 00:00:00 hours
+          6, 0, 0 // ...at 06:00:00 hours
       );
       var msTillMidnight = night.getTime() - now.getTime();
       console.log(night, msTillMidnight);
