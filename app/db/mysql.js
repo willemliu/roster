@@ -6,7 +6,7 @@ var mysql = require('mysql');
 var credentials = require('./credentials');
 
 var pool = mysql.createPool({
-  connectionLimit: 100, // Default 10
+  connectionLimit: 10, // Default 10
   host : credentials.host,
   database: credentials.database,
   user : credentials.user,
