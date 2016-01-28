@@ -1,15 +1,13 @@
 /**
  * Roster Socket IO connections
  */
-module.exports = {
-  io: null,
-  mysql: null,
+var RosterIO = function init(io, mysql) {
+  console.log("Initialized Roster Socket IO");
+  module.exports.io = io;
+  module.exports.mysql = mysql;
+};
 
-  init: function(io, mysql) {
-    module.exports.io = io;
-    module.exports.mysql = mysql;
-  },
-  
+RosterIO.prototype = {
   editCell: function(json) {
     var date;
     var userId;
@@ -46,10 +44,10 @@ module.exports = {
         throw err;
       } else {
         console.log( rows );
+        module.exports.io.emit('edit cell', json);
       }
     });
     
-    module.exports.io.emit('edit cell', json);
   }, 
   
   editRow: function(json) {
@@ -74,9 +72,12 @@ module.exports = {
         throw err;
       } else {
         console.log( rows );
+        module.exports.io.emit('edit row', json);
       }
     });
-    
-    module.exports.io.emit('edit row', json);
   }
-}
+};
+
+module.exports = function(io, mysql) {
+  return new RosterIO(io, mysql);
+};

@@ -5,10 +5,8 @@ var http      = require('http').Server(app);
 var fs        = require('fs'); // bring in the file system api
 var mustache  = require('mustache'); // bring in mustache template engine
 var io        = require('socket.io')(http);
-var roster    = require('./app/socketio/roster');
-roster.init(io, mysql);
-var chat      = require('./app/socketio/chat');
-chat.init(io, mysql);
+var roster    = require('./app/socketio/roster')(io, mysql);
+var chat      = require('./app/socketio/chat')(io, mysql);
 
 io.on('connection', function(socket) {
   console.log('User connected to SocketIO');
