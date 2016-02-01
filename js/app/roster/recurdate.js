@@ -88,12 +88,13 @@ define([
       var dt = new Date(startDate);
       var weekOffset = 0;
       var firstRun = true;
-      while(dt.getTime() < endDate.getTime()) {
+      while(dt.getTime() <= endDate.getTime()) {
         if(!firstRun && dt.getDay() === 0) {
           weekOffset++;
         }
         // Check if correct week interval and is the selected day.
-        if((weekOffset%weekInterval) === 0 && $.inArray(dt.getDay(), days) === 0) {
+        console.log(dt, days, $.inArray(dt.getDay(), days));
+        if((weekOffset%weekInterval) === 0 && $.inArray(dt.getDay(), days) != -1) {
           result.push(new Date(dt));
         }
         dt.setDate(dt.getDate()+1); // Increment 1 day
