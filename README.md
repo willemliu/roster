@@ -13,16 +13,17 @@ We hope this project can also serve as teaching tool for the rest out there who'
 ## Technologies
 __Roster__ uses the following technologies:
 
-| Technology                                                    | Description                         |
-| ------------------------------------------------------------- | ----------------------------------- |
-| [NodeJS](https://nodejs.org)                                  | JavaScript runtime                  |
-| [Express](http://expressjs.com/)                              | NodeJS web framework                |
-| [Socket.io](http://socket.io/)                                | Websockets framework                |
-| [Gulp](http://gulpjs.com/)                                    | Gulp JavaScript task runner         |
-| [Compass](http://compass-style.org)                           | CSS authoring framework (scss/sass) |
-| [RequireJS](http://requirejs.org)                             | JavaScript file and module loader   |
-| [jQuery](http://jquery.com)                                   | jQuery                              |
-| [MySQL](http://www.mysql.com)                                 | MySQL Database                      |
+| Technology                                                    | Description                           |
+| ------------------------------------------------------------- | ------------------------------------- |
+| [NodeJS](https://nodejs.org)                                  | JavaScript runtime                    |
+| [Express](http://expressjs.com/)                              | NodeJS web framework                  |
+| [Socket.io](http://socket.io/)                                | Websockets framework                  |
+| [Gulp](http://gulpjs.com/)                                    | Gulp JavaScript task runner           |
+| [Compass](http://compass-style.org)                           | CSS authoring framework (scss/sass)   |
+| [Mustache](https://github.com/janl/mustache.js)               | Logic-less templates with JavaScript  |
+| [RequireJS](http://requirejs.org)                             | JavaScript file and module loader     |
+| [jQuery](http://jquery.com)                                   | jQuery                                |
+| [MySQL](http://www.mysql.com)                                 | MySQL Database                        |
 
 ## MySQL DB
 You can find the minimum DB schema in the __app/db__ folder.
