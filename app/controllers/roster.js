@@ -84,7 +84,7 @@ module.exports = function(app, fs, mustache, mysql) {
    * Get all users from the DB and store it in the data object.
    */
   function getUsers(cb) {
-    var strQuery = "SELECT * FROM users ORDER BY username ASC";
+    var strQuery = "SELECT * FROM users WHERE enabled=1 ORDER BY username ASC";
     mysql.query( strQuery, function(err, res) {
       if(err)	{
         throw err;
