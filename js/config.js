@@ -20,13 +20,8 @@ requirejs.config({
 
 requirejs([
   'jquery',
-  'app/chat/chatio',
   'app/app'
-], function($, ChatIO, App) {
-  
-  if($('html').hasClass('chat') > 0) {
-    ChatIO.getInstance();
-  }
+], function($, App) {
   
   App.getInstance();
 });

@@ -124,6 +124,8 @@ html.roster {
     display: none;
     position: absolute;
     width: 250px;
+    max-height: 40vh;
+    overflow: auto;
     background: $edit-bg-color;
     border-radius: 20px;
     padding: 20px;
@@ -131,6 +133,9 @@ html.roster {
     
     h1 {
       font-size: 1rem;
+    }
+    h2 {
+      font-size: .8rem;
     }
     
     label {
@@ -213,7 +218,7 @@ html.roster {
     &.rtl {
       direction: rtl;
     }
-    > :first-child {
+    * {
       direction: ltr;
       overflow: none;
     }
