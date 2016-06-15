@@ -28,6 +28,7 @@ define([
       var free = 0;
       var outOfOffice = 0;
       var supportDuty = 0;
+      var groups = [];
       var weekInterval = 1;
       var days = [];
       for(var idx in json) {
@@ -45,6 +46,8 @@ define([
           endDate = new Date(json[idx].value);
         } else if(json[idx].name == 'recur-week') {
           weekInterval = json[idx].value;
+        } else if(json[idx].name == 'group[]') {
+          groups.push({"name": json[idx].name, "value": json[idx].value});
         } else if(json[idx].name == 'recur-day[]') {
           days.push(parseInt(json[idx].value));
         }
@@ -74,7 +77,7 @@ define([
             "name" : "free",
             "value" : free
           }
-        ]);
+        ].concat(groups));
       }
       return results;
     },
