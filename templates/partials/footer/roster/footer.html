@@ -1,16 +1,21 @@
 <div class="edit-box cell-edit point-left">
   <form action="" onSubmit="return false;">
-    <h1>Free</h1>
+    <h2>Free</h2>
     <select name="free">
       <option value="0">--At work--</option>
       <option value="1">Half day</option>
       <option value="2">Free</option>
     </select>
     
-    <h1>Special</h1>
+    <h2>Special</h2>
     <label><input type="checkbox" name="out-of-office" value="1"/>Out-of-office</label>
     <label><input type="checkbox" name="support-duty" value="1"/>Support duty</label>
-    
+
+    <h2 title="Group(s) a user belongs to">Group Settings</h2>
+    {{#groups}}
+    <label><input type="checkbox" class="group" data-group-name="{{group_name}}" name="group[]" value="{{group_name}}"/>{{group_name}}</label>
+    {{/groups}}
+
     <input type="hidden" name="data-date" value=""/>
     <input type="hidden" name="data-user-id" value=""/>
   </form>
@@ -18,7 +23,7 @@
 </div>
 
 <div class="edit-box row-edit point-left">
-  <h1>Free</h1>
+  <h2>Free</h2>
   <p>Setting for everyone for selected day</p>
   <form action="" onSubmit="return false;">
     <select name="free">
@@ -32,19 +37,26 @@
 </div>
 
 <div class="edit-box column-edit">
+  <h1>Recurring</h1>
+  
   <form action="" onSubmit="return false;">
-    <h1>Free</h1>
+    <h2>Free</h2>
     <select name="free">
       <option value="0">--At work--</option>
       <option value="1">Half day</option>
       <option value="2">Free</option>
     </select>
     
-    <h1>Special</h1>
+    <h2>Special</h2>
     <label><input type="checkbox" name="out-of-office" value="1"/>Out-of-office</label>
     <label><input type="checkbox" name="support-duty" value="1"/>Support duty</label>
-    
-    <h1>Recurrence (be careful!)</h1>
+
+    <h2 title="Group(s) a user belongs to">Group Settings</h2>
+    {{#groups}}
+    <label><input type="checkbox" name="group[]" value="{{group_name}}"/>{{group_name}}</label>
+    {{/groups}}
+
+    <h2>Recurrence (be careful!)</h2>
     <label>Start date</label><input type="date" name="start-date"/>
     <label>End date</label><input type="date" name="end-date"/>
     <label>Every <input type="number" name="recur-week" value="1"/>week(s)</label>
@@ -53,7 +65,7 @@
     <label><input type="checkbox" name="recur-day[]" value="3"/>on Wednesday</label>
     <label><input type="checkbox" name="recur-day[]" value="4"/>on Thursday</label>
     <label><input type="checkbox" name="recur-day[]" value="5"/>on Friday</label>
-    
+
     <input type="hidden" name="data-user-id" value=""/>
     <input type="submit" name="submit" value="Submit"/>
   </form>

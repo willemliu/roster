@@ -1,5 +1,6 @@
 /**
  * RosterEdit module
+ * Render the edit boxes.
  */
 define([
   'jquery',
@@ -127,6 +128,10 @@ define([
       
       $(".cell-edit [name='out-of-office']").prop("checked", ($(el).hasClass('out-of-office'))?'checked':'');
       $(".cell-edit [name='support-duty']").prop("checked", ($(el).hasClass('support-duty'))?'checked':'');
+      
+      $(".cell-edit [name='group[]']").each(function() {
+        $(this).prop("checked", ($(el).hasClass($(this).attr('data-group-name')))?'checked':'');
+      });
       
       $(".cell-edit [name='data-date']").val($(el).attr('data-date'));
       $(".cell-edit [name='data-user-id']").val($(el).attr('data-user-id'));

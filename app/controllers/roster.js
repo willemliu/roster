@@ -40,7 +40,7 @@ module.exports = function(app, fs, mustache, mysql) {
   };
   
   /**
-   * Controller for /footer/{date}
+   * Controller for /roster/{date}
    */
   app.get('/roster/:date', function(req, res){ // get the url and date info
     resetData();
@@ -82,6 +82,7 @@ module.exports = function(app, fs, mustache, mysql) {
   
   /**
    * Get all users from the DB and store it in the data object.
+   * Entry point for data retrieval from DB
    */
   function getUsers(cb) {
     var strQuery = "SELECT * FROM users ORDER BY username ASC";
@@ -119,11 +120,26 @@ module.exports = function(app, fs, mustache, mysql) {
             }
           }
         }
+        getGroups(cb);
+      }
+    });
+  }
+
+  /**
+   * Get all groups from the DB and store it in the data object.
+   */
+  function getGroups(cb) {
+    var strQuery = "SELECT * FROM groups ORDER BY group_name ASC";
+    mysql.query( strQuery, function(err, res) {
+      if(err)	{
+        throw err;
+      } else {
+        data.groups = JSON.parse(JSON.stringify(res));
         cb();
       }
     });
   }
-  
+    
   function renderHtml(res, data) {
     var head = fs.readFileSync('templates/partials/head/roster/head.html', "utf8"); // bring in the HEAD
     var body = fs.readFileSync('templates/partials/body/roster/body.html', "utf8"); // bring in the BODY

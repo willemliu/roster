@@ -1,5 +1,6 @@
 /**
  * RosterIO module
+ * Handling edits and updates
  */
 define([
   'jquery',
@@ -65,6 +66,10 @@ define([
     
     removeAllSpecialClasses: function(el) {
       $(el).removeClass("free half out-of-office support-duty");
+      $('.group').each(function() {
+        $(el).removeClass($(this).attr('data-group-name'));
+      });
+
     },
     
     /**
@@ -86,11 +91,12 @@ define([
         } else if(json[idx].name == 'free') {
           cssClasses.push(this.isFree(json[idx].value));
         } else if(json[idx].name == 'out-of-office' && json[idx].value > 0) {
-          console.log(json[idx].value);
           cssClasses.push(json[idx].name);
         } else if(json[idx].name == 'support-duty' && json[idx].value > 0) {
-          console.log(json[idx].value);
           cssClasses.push(json[idx].name);
+        } else if(json[idx].name == 'group[]') {
+          console.log(json[idx].name, json[idx].value);
+          cssClasses.push(json[idx].value);
         }
       }
       

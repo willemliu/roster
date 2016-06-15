@@ -14,6 +14,7 @@ RosterIO.prototype = {
     var free = 0;
     var outOfOffice = 0;
     var supportDuty = 0;
+    var groups = [];
 
     for(var idx in json) {
       if(json[idx].name == 'data-date') {
@@ -26,6 +27,8 @@ RosterIO.prototype = {
         outOfOffice = json[idx].value;
       } else if(json[idx].name == 'support-duty') {
         supportDuty = json[idx].value;
+      } else if(json[idx].name == 'group[]') {
+        groups.push(json[idx].value);
       }
     }
     
@@ -34,11 +37,14 @@ RosterIO.prototype = {
     dataArray.push(free);
     dataArray.push(outOfOffice);
     dataArray.push(supportDuty);
+    dataArray.push(groups.join(' '));
     dataArray.push(new Date(date));
     dataArray.push(free);
     dataArray.push(outOfOffice);
     dataArray.push(supportDuty);
-    var strQuery = "INSERT IGNORE INTO users_dates (user_id, free, out_of_office, support_duty, dt) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE free=?, out_of_office=?, support_duty=?";
+    dataArray.push(groups.join(' '));
+
+    var strQuery = "INSERT IGNORE INTO users_dates (user_id, free, out_of_office, support_duty, groups, dt) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE free=?, out_of_office=?, support_duty=?, groups=?";
     module.exports.mysql.query( strQuery, dataArray, function(err, rows) {
       if(err)	{
         throw err;
@@ -47,6 +53,8 @@ RosterIO.prototype = {
         module.exports.io.emit('edit cell', json);
       }
     });
+    
+    // Process groups
     
   }, 
   

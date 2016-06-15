@@ -68,11 +68,12 @@ function executeQuery(arguments) {
     dataArray = arguments[1];
   }
   var callback = arguments[arguments.length-1];
+  console.log(new Date(), 'Get MySQL connection');
   pool.getConnection(function(err, connection) {
     if(err)	{
       throw err;
     }
-    console.log('MySQL connection id ' + connection.threadId);
+    console.log(new Date(), 'MySQL connection id ' + connection.threadId);
     connection.query( query, dataArray, function(err, rows) {
       // And done with the connection. 
       console.log("MySQL connection closed");
@@ -91,6 +92,7 @@ function executeQuery(arguments) {
       }
     });
   });
+  console.log(new Date(), 'Get MySQL connection called');
 }
 
 exports.query = query;
