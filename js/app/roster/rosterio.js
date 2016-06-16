@@ -55,6 +55,8 @@ define([
       var cell = $("[data-date='" + (new Date(result.date)).toDateString() + "'][data-user-id='" + result.userId + "']");
       this.removeAllSpecialClasses(cell);
       cell.addClass(result.cssClasses);
+      cell.attr('data-groups', result.groups);
+      $(EVENT_BUS).trigger('rosterio.editCell:done');
     },
     
     editRow: function(json) {
@@ -62,6 +64,8 @@ define([
       var cell = $("[data-date='" + (new Date(result.date)).toDateString() + "'][data-user-id]");
       cell.removeClass("free half");
       cell.addClass(result.cssClasses);
+      cell.attr('data-groups', result.groups);
+      $(EVENT_BUS).trigger('rosterio.editRow:done');
     },
     
     removeAllSpecialClasses: function(el) {
@@ -82,6 +86,7 @@ define([
       var date;
       var userId;
       var cssClasses = [];
+      var groups = [];
 
       for(var idx in json) {
         if(json[idx].name == 'data-date') {
@@ -97,13 +102,15 @@ define([
         } else if(json[idx].name == 'group[]') {
           console.log(json[idx].name, json[idx].value);
           cssClasses.push(json[idx].value);
+          groups.push(json[idx].value);
         }
       }
       
       return {
         date: date,
         userId: userId,
-        cssClasses: cssClasses.join(' ')
+        cssClasses: cssClasses.join(' '),
+        groups: groups.join(' ')
       };
     },
     

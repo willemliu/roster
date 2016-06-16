@@ -18,6 +18,8 @@ requirejs.config({
   }
 );
 
+var EVENT_BUS = {};
+
 requirejs([
   'jquery',
   'app/app'

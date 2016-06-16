@@ -8,6 +8,7 @@ var runningQueue = false;
 var queue = [];
 
 var pool = mysql.createPool({
+  acquireTimeout: 1000,
   connectionLimit: 10, // Default 10
   host : credentials.host,
   database: credentials.database,

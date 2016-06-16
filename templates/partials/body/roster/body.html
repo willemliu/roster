@@ -12,7 +12,7 @@
     <div class="tr {{today}}">
       <div class="td edit-row" data-date="{{date}}">{{dateString}}</div>
       {{#users}}
-      <div class="td {{#settings}}{{free}} {{out_of_office}} {{support_duty}} {{groups}}{{/settings}}" data-date="{{date}}" data-user-id="{{id}}"><span class="out-of-office"></span>{{username}}<span class="support-duty"></span></div>
+      <div class="td {{#settings}}{{free}} {{out_of_office}} {{support_duty}} {{groups}}{{/settings}}" data-groups="{{#settings}}{{groups}}{{/settings}}" data-date="{{date}}" data-user-id="{{id}}"><span class="out-of-office"></span>{{username}}<span class="support-duty"></span></div>
       {{/users}}
     </div>
     {{/dates}}

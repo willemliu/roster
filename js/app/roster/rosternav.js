@@ -18,12 +18,12 @@ define([
       $(document).on("click", ".previousPeriod", function(){
         var firstDate = new Date($("[data-date]").first().attr("data-date"));
         firstDate.setDate(firstDate.getDate() - 30);
-        window.location = '/roster/' + firstDate.toDateString();
+        window.location = '/roster/' + firstDate.toDateString() + '/' + window.location.search;
       });
 
       $(document).on("click", ".nextPeriod", function(){
         var lastDate = new Date($("[data-date]").last().attr("data-date"));
-        window.location = '/roster/' + lastDate.toDateString();
+        window.location = '/roster/' + lastDate.toDateString() + '/' + window.location.search;
       });
     },
     

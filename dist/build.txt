@@ -2,6 +2,7 @@
 lib/../config.js
 ----------------
 lib/jquery-2.2.0.js
+app/roster/groups.js
 lib/socket.io.js
 app/roster/recurdate.js
 app/roster/rosterio.js

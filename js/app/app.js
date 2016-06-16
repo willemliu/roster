@@ -3,9 +3,10 @@
  */
 define([
   'jquery',
+  'app/roster/groups',
   'app/roster/rosteredit',
   'app/roster/rosternav'
-], function($, RosterEdit, RosterNav) {
+], function($, Groups, RosterEdit, RosterNav) {
   var instance = null;
   
   function App(){
@@ -18,10 +19,9 @@ define([
     init: function() {
       console.log('Initialize app');
       
-      if($('html').hasClass('roster')) {
-        RosterEdit.getInstance();
-        RosterNav.getInstance();
-      }
+      Groups.getInstance();
+      RosterEdit.getInstance();
+      RosterNav.getInstance();
     },
     
     getInstance: function() {
