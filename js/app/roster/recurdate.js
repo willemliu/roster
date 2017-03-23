@@ -100,6 +100,8 @@ define([
         if((weekOffset%weekInterval) === 0 && $.inArray(dt.getDay(), days) != -1) {
           result.push(new Date(dt));
         }
+        var tomorrow = this.addDays(dt, 1);
+        console.debug('Tomorrow:', tomorrow, new Date(dt.getDate()+1));
         dt.setDate(this.addDays(dt, 1)); // Increment 1 day
         firstRun = false;
       }
