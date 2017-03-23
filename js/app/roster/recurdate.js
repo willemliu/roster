@@ -106,7 +106,7 @@ define([
         console.debug('Tomorrow:', tomorrow, dtClone);
         var timeDiff = Math.abs(tomorrow.getTime() - dtClone.getTime());
         console.debug('Offset:', timeDiff);
-        dt.setDate(this.addDays(dt, 1)); // Increment 1 day
+        dt.setDate(dt.getDate() + 1); // Increment 1 day
         firstRun = false;
       }
       return result;
