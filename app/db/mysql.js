@@ -2,7 +2,7 @@
  * MySQL
  */
 console.log("Initialize MySQL");
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var credentials = require('./credentials');
 var runningQueue = false;
 var queue = [];
