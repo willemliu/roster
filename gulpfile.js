@@ -3,10 +3,10 @@ var gulp = require('gulp');
 
 // Include Our Plugins
 var jshint = require('gulp-jshint');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
+// var sass = require('gulp-sass');
+// var concat = require('gulp-concat');
+// var uglify = require('gulp-uglify');
+// var rename = require('gulp-rename');
 var rjs = require('requirejs');
 
 // Lint Task
@@ -17,11 +17,11 @@ gulp.task('lint', function() {
 });
 
 // Compile Our Sass
-gulp.task('sass', function() {
-    return gulp.src('scss/**/main.scss')
-        .pipe(sass({ compass: true, bundleExec: true, outputStyle: 'compressed', sourcemap: true, sourcemapPath: '/css' }))
-        .pipe(gulp.dest('css'));
-});
+// gulp.task('sass', function() {
+//     return gulp.src('scss/**/main.scss')
+//         .pipe(sass({ compass: true, bundleExec: true, outputStyle: 'compressed', sourcemap: true, sourcemapPath: '/css' }))
+//         .pipe(gulp.dest('css'));
+// });
 
 // Concatenate & Minify JS
 gulp.task('build', function(cb){
@@ -55,4 +55,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'build']);
+gulp.task('default', ['lint', 'build']);

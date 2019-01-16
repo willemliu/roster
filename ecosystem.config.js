@@ -9,7 +9,7 @@ module.exports = {
     {
       name      : 'FDMG Roster',
       cwd	: '/var/www/html/roster/',
-      script    : 'roster.js',
+      script    : 'server.js',
       env: {
         COMMON_VARIABLE: 'true'
       },

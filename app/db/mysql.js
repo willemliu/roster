@@ -10,11 +10,11 @@ var queue = [];
 var pool = mysql.createPool({
   acquireTimeout: 1000,
   connectionLimit: 10, // Default 10
-  host : credentials.host,
-  database: credentials.database,
-  user : credentials.user,
+  host : process.env.DB_HOST || credentials.host,
+  database: process.env.DB_NAME || credentials.database,
+  user : process.env.DB_USER || credentials.user,
   multipleStatements: true,
-  password: credentials.password
+  password: process.env.DB_PASS || credentials.password
 });
 console.log('MySQL pool created');
 
