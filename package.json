@@ -25,6 +25,7 @@
   },
   "scripts": {
     "build": "gulp && npm run sass",
+    "postinstall": "npm run build",
     "sass": "node-sass --omitSourceMapUrl=true --output-style=compressed scss/main.scss -o css",
     "start": "node server.js"
   }
