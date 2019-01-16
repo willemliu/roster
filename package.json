@@ -26,6 +26,6 @@
   "scripts": {
     "build": "gulp && npm run sass",
     "sass": "node-sass --omitSourceMapUrl=true --output-style=compressed scss/main.scss -o css",
-    "start": "node roster.js"
+    "start": "node server.js"
   }
 }
