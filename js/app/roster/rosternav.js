@@ -19,11 +19,13 @@ define([
         var firstDate = new Date($("[data-date]").first().attr("data-date"));
         firstDate.setDate(firstDate.getDate() - 30);
         window.location = '/roster/' + firstDate.toDateString() + '/' + window.location.search;
+        appInsights.trackEvent("Previous period", {date: firstDate.toDateString()});
       });
 
       $(document).on("click", ".nextPeriod", function(){
         var lastDate = new Date($("[data-date]").last().attr("data-date"));
         window.location = '/roster/' + lastDate.toDateString() + '/' + window.location.search;
+        appInsights.trackEvent("Next period", {date: firstDate.toDateString()});
       });
     },
     

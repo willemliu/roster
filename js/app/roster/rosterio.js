@@ -23,12 +23,14 @@ define([
       $(document).on("change", ".cell-edit input, .cell-edit select", function(){
         var json = JSON.stringify($(".cell-edit form").serializeArray());
         socket.emit('edit cell', JSON.parse(json));
+        appInsights.trackEvent("Edit Cell");
         return false;
       });
 
       $(document).on("change", ".row-edit input, .row-edit select", function(){
         var json = JSON.stringify($(".row-edit form").serializeArray());
         socket.emit('edit row', JSON.parse(json));
+        appInsights.trackEvent("Edit Row");
         return false;
       });
 
@@ -42,7 +44,7 @@ define([
         for(var idx in dates) {
           socket.emit('edit cell', dates[idx]);
         }
-        
+        appInsights.trackEvent("Edit multiple");        
         return false;
       });
 
